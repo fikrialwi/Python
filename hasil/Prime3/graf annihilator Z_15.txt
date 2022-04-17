@@ -1,0 +1,26 @@
+graf annihilator Z_15
+{
+ 3: [5,10]
+ 5: [3,6,9,12]
+ 6: [5,10]
+ 9: [5,10]
+ 10: [3,6,9,12]
+ 12: [5,10]
+}
+ orde : 6	 size : 8
+ indeks topologi :
+ narumi katayama : 256
+ first multiplicative zagreb : ( 65536 1679616) 
+ second multiplicative zagreb : 16777216 8**8
+
+
+---SMZK----
+ [3,6,9,12]
+ p = 3, q= 5
+ 3 => 2**6
+ 6 => 2**4
+ 9 => 2**2
+ [5,10]
+ 5 => 4**2
+ def o(q-1):
+    q-1(q-2)/2

@@ -1,0 +1,21 @@
+graf annihilator Z_26
+{
+ 2: [13]
+ 4: [13]
+ 6: [13]
+ 8: [13]
+ 10: [13]
+ 12: [13]
+ 13: [2,4,6,8,10,12,14,16,18,20,22,24]
+ 14: [13]
+ 16: [13]
+ 18: [13]
+ 20: [13]
+ 22: [13]
+ 24: [13]
+}
+ orde : 13	 size : 12
+ indeks topologi :
+ narumi katayama : 12
+ first multiplicative zagreb : (144 23298085122481) 
+ second multiplicative zagreb : 8916100448256 12**12

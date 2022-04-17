@@ -1,0 +1,19 @@
+graf annihilator Z_22
+{
+ 2: [11]
+ 4: [11]
+ 6: [11]
+ 8: [11]
+ 10: [11]
+ 11: [2,4,6,8,10,12,14,16,18,20]
+ 12: [11]
+ 14: [11]
+ 16: [11]
+ 18: [11]
+ 20: [11]
+}
+ orde : 11	 size : 10
+ indeks topologi :
+ narumi katayama : 10
+ first multiplicative zagreb : (100 25937424601) 
+ second multiplicative zagreb : 10000000000 10**10

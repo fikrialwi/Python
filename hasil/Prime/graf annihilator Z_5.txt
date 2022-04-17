@@ -1,0 +1,8 @@
+graf annihilator Z_5
+{
+}
+ orde : 0	 size : 0
+ indeks topologi :
+ narumi katayama : 1
+ first multiplicative zagreb : ( 1 1) 
+ second multiplicative zagreb : 1

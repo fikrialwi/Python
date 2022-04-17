@@ -1,0 +1,11 @@
+graf annihilator Z_6
+{
+ 2: [3]
+ 3: [2,4]
+ 4: [3]
+}
+ orde : 3	 size : 2
+ indeks topologi :
+ narumi katayama : 2
+ first multiplicative zagreb : ( 4 9) 
+ second multiplicative zagreb : 4 2**2

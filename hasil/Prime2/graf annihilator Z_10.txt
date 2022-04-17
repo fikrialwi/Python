@@ -1,0 +1,14 @@
+graf annihilator Z_10
+{
+ 2: [5]
+ 4: [5]
+ 5: [2,4,6,8]
+ 6: [5]
+ 8: [5]
+}
+ orde : 5	 size : 4
+ indeks topologi :
+ narumi katayama : 4
+ first multiplicative zagreb : (16 625) 
+ second multiplicative zagreb : 256 4*4
+

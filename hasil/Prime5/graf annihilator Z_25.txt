@@ -1,0 +1,12 @@
+graf annihilator Z_25
+{
+ 5: [10,15,20]
+ 10: [10,15,20]
+ 15: [10,15,20]
+ 20: [10,15,20]
+}
+ orde : 4	 size : 6
+ indeks topologi :
+ narumi katayama : 256
+ first multiplicative zagreb : ( 65536 262144) 
+ second multiplicative zagreb : 16777216

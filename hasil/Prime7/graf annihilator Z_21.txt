@@ -1,0 +1,16 @@
+graf annihilator Z_21
+{
+ 3: [7,14]
+ 6: [7,14]
+ 7: [3,6,9,12,15,18]
+ 9: [7,14]
+ 12: [7,14]
+ 14: [3,6,9,12,15,18]
+ 15: [7,14]
+ 18: [7,14]
+}
+ orde : 8	 size : 12
+ indeks topologi :
+ narumi katayama : 2304
+ first multiplicative zagreb : ( 5308416 68719476736) 
+ second multiplicative zagreb : 8916100448256
