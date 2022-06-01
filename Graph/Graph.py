@@ -124,3 +124,8 @@ class Graph(Operator):
 
 
 # TODO: melengkapi data jenis-jenis graf
+
+# graph = Graph('Z_21','annihilator')
+
+# for i in graph.elememt():
+#     print(i,'->',graph.ann(i))
