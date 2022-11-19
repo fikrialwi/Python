@@ -52,4 +52,5 @@ class Matrix:
                         result[i][j] += A[i][k]*self.matrix[k][j]
         return result
 
-    
+    def transpose(self):
+        
