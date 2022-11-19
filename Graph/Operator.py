@@ -1,8 +1,6 @@
 from functools import reduce
-from Algebra import Algebra
 
-
-class Operator(Algebra):
+class Operator:
     def union(self, arr1, arr2):
         return list(set(arr1+arr2))
 
@@ -11,6 +9,9 @@ class Operator(Algebra):
 
     def difference(self, arr1, arr2):
         return [x for x in arr1 if x not in arr2]
+
+    def symmetriDiff(self,arr1,arr2):
+        return [x for x in arr1 if x not in arr2 ] + [x for x in arr2 if x not in arr1]
 
     def clearDuplicate(self, arr):
         res = []
@@ -23,7 +24,12 @@ class Operator(Algebra):
         return sum(arr)
 
     def proc(self, arr):
-        return reduce(lambda x, y: x*y, arr)
+        return reduce(lambda x, y: x*y, arr) if len(arr) > 0 else 0
 
     def flat(self,arr):
         return [item for sublist in arr for item in sublist]
+
+    def sumOfSet(self,arr1,arr2):
+        for i,e in enumerate(arr1):
+            arr2[i] +=e
+        return arr2

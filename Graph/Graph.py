@@ -1,8 +1,8 @@
 from queue import Queue
-from Operator import Operator
+from Algebra import Algebra
 
 
-class Graph(Operator):
+class Graph(Algebra):
     def __init__(self, ring, type):
         self.ring = ring
         self.type = type
@@ -11,11 +11,10 @@ class Graph(Operator):
         return super().getNumber()
 
     def vertecies(self):
-        return [x for x in range(self.getNumber()) if self.isVertex(x)]
+        return [(x,y) for x in self.element() for y in self.element() if self.isVertex([x,y])] if self.type =="clean" else [x for x in range(self.getNumber()) if self.isVertex(x)]
 
     def edges(self):
-        edge = [{x, y} for x in self.vertecies()
-                for y in self.vertecies() if self.isEdge(x, y) and x < y]
+        edge = [{x, y} for x in self.vertecies() for y in self.vertecies() if self.isEdge(x, y) and x!= y]
         return self.clearDuplicate(edge)
 
     def notEdges(self):
@@ -25,17 +24,71 @@ class Graph(Operator):
         if self.type == 'annihilator':
             return x in self.zeroDivisor()
         elif self.type == 'unit':
-            return x in self.elememt()
+            return x in self.element()
         elif self.type == 'zero divisor':
             return x in self.zeroDivisor()
+        elif self.type == 'total':
+            return x in self.element()
+        elif self.type == 'total zero divisor':
+            return x in self.zeroDivisor()
+        elif self.type == 'co zero divisor':
+            return x in self.coZeroDivisor()
+        elif self.type == 'identitas':
+            return x in self.unit()
+        elif self.type == 'prima':
+            return x in self.element()
+        elif self.type == 'co maximal':
+            return x in self.element()
+        elif self.type == 'nilradical':
+            return [x for x in self.element() if self.nilpotent(x) and x != 0]
+        elif self.type == 'non radical':
+            return [x for x in self.zeroDivisor() if not self.nilpotent(x)]
+        elif self.type == 'clean':
+            return x[0] in self.setOfIdempotent() and x[1] in self.unit()
+        elif self.type == 'idempotent':
+            return x in self.setOfIdempotent() and x != 1 and x != 0
+        elif self.type == 'nilpotent':
+            return not self.nilpotent(x)
+        elif self.type == 'jacobson':
+            return x in self.difference(self.element(),self.jacobson())
         else:
             return "kami tidak mengenali jenis graf yang anda masukkan"
 
     def isEdge(self, x, y):
-        if self.type == 'annihilator':
-            return self.union(self.ann(x), self.ann(y)) != self.ann(x*y)
-        elif self.type == 'unit':
-            return x+y in self.unit(self.ring)
+        if x != y:
+            if self.type == 'annihilator':
+                return self.union(self.ann(x), self.ann(y)) != self.ann(x*y)
+            elif self.type == 'unit':
+                return (x+y)%self.getNumber() in self.unit()
+            elif self.type == 'zero divisor':
+                return x*y%self.getNumber() == 0
+            elif self.type == 'total':
+                return x+y%self.getNumber() in self.zeroDivisor()
+            elif self.type == 'total zero divisor':
+                return x*y%self.getNumber() == 0 and x+y in self.zeroDivisor()
+            elif self.type == 'co zero divisor':
+                return x not in [i*y for i in self.element()] and y not in [i*x for i in self.element()]
+            elif self.type == 'identitas':
+                return x*y%self.getNumber() == 1
+            elif self.type == 'prima':
+                return not any([x*i*y for i in self.element()]) or not any([y*i*x for i in self.element()])
+            elif self.type == 'co maximal':
+                return self.symmetriDiff([(x*i)%self.getNumber() for i in self.element()],[(i*y)%self.getNumber() for i in self.element()]) == self.element()  
+            elif self.type == 'nilradical':
+                return x*y%self.getNumber() == 0
+            elif self.type == 'non radical':
+                return x*y%self.getNumber() == 0
+            elif self.type == 'clean':
+                return x[0]*y[0]%self.getNumber() == 0 and x[1]*y[1]%self.getNumber() == 1
+            elif self.type == 'idempotent':
+                return x*y %self.getNumber() == 0
+            elif self.type == 'nilpotent':
+                return self.nilpotent(x+y %self.getNumber())
+            elif self.type == 'jacobson':
+                return (1-x*y)%self.getNumber() not in self.unit() 
+            else:
+                return "kami tidak mengenali graf yang anda masukkan"
+             
 
     def orde(self):
         return len(self.vertecies())
@@ -112,20 +165,28 @@ class Graph(Operator):
             matrix.append(row)
         return matrix
 
+    def matrixLaplacian(self):
+        matrix = []
+        for i in self.vertecies():
+            row = []
+            for j in self.vertecies():
+                el = -1 if self.isEdge(i, j) else self.degree(j) if i == j else 0
+                row.append(el)
+            matrix.append(row)
+        return matrix
+
     def seqDegree(self, type):
         if type == 'vertex':
-            return list(map(self.degree, self.vertecies()))
+            return [*map(self.degree, self.vertecies())]
         elif type == 'edge':
-            return list(map(lambda y: list(map(self.degree, y)), self.edges()))
+            return [*map(lambda y: [*map(self.degree, y)], self.edges())]
         elif type == 'not edge':
-            return list(map(lambda y: list(map(self.degree, y)), self.notEdges()))
+            return [*map(lambda y: [*map(self.degree, y)], self.notEdges())]
         else:
             return None
 
 
-# TODO: melengkapi data jenis-jenis graf
-
-# graph = Graph('Z_21','annihilator')
-
-# for i in graph.elememt():
-#     print(i,'->',graph.ann(i))
+I = Graph('Z_25','annihilator')
+print(I.matrixLaplacian())
+print(I.vertecies())
+print(I.edges())
