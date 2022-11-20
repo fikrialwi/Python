@@ -1,7 +1,9 @@
 import Algebra
+import Operations
 class Matrix:
     def __init__(self, matrix):
         self.matrix = matrix
+        self.Algebra = Algebra.Algebra()
     
     def row(self):
         return len(self.matrix)
@@ -44,7 +46,7 @@ class Matrix:
         if row == column:
             row = A.row()
             column = self.column()
-            result = Algebra.zero(row, column)
+            result = self.Algebra.zero(row, column)
 
             for i in range(row):
                 for j in range(column):
@@ -65,7 +67,7 @@ class Matrix:
         row = self.row()
         column = self.column()
 
-        result = Algebra.zero(column, row)
+        result = self.Algebra.zero(column, row)
 
         for i in range(row):
             for j in range(column):
@@ -108,7 +110,7 @@ class Matrix:
             # traversing every row below the diagonal element
             for j in range(i+1, self.row()):
                 num1 = temp[i]     # value of diagonal element
-                num2 = self.matrixt[j][i]   # value of next row element
+                num2 = self.matrix[j][i]   # value of next row element
     
                 # traversing every column of row
                 # and multiplying to every row
@@ -127,20 +129,21 @@ class Matrix:
         return int(det/total)  # Det(kA)/k=Det(A);
     
     def invers(self):
-        if self.row() != self.column() or self.determinant(self.matrix) == 0:
+        if self.row() != self.column() or self.determinant() == 0:
             return "matriks Anda tidak mempunyai invers"
         
- 
         # Section 2: Make copies of A & I, AM & IM, to use for row ops
-        n = len(A)
-        AM = copy_matrix(A)
-        I = Algebra.identity(n)
-        IM = copy_matrix(I)
-
+        n = self.row()
+        AM = Operations.Operation.copy(self.matrix)
+        I = self.Algebra.identity(n)
+        IM = self.Algebra.identity(n)
         # Section 3: Perform row operations
         indices = list(range(n)) # to allow flexible row referencing ***
         for fd in range(n): # fd stands for focus diagonal
             fdScaler = 1.0 / AM[fd][fd]
+            print(AM)
+            print(IM)
+            print(self.matrix)
             # FIRST: scale fd row with fd inverse. 
             for j in range(n): # Use j to indicate column looping.
                 AM[fd][j] *= fdScaler
@@ -153,3 +156,11 @@ class Matrix:
                     # cr - crScaler * fdRow, but one element at a time.
                     AM[i][j] = AM[i][j] - crScaler * AM[fd][j]
                     IM[i][j] = IM[i][j] - crScaler * IM[fd][j]
+        return IM
+A = [
+    [1,2,3],
+    [2,3,5],
+    [3,0,1]
+    ]
+M = Matrix(A)
+print(M.invers())

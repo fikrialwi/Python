@@ -1,7 +1,7 @@
 class Algebra:
     def __init__(self) -> None:
         pass
-    def identity(m):
+    def identity(self,m):
         res = []
         for i in range(m):
             temp = []
@@ -10,7 +10,7 @@ class Algebra:
             res.append(temp)
         return res
 
-    def zero(m,n):
+    def zero(self,m,n):
         res = []
         for i in range(m):
             temp = []
@@ -18,5 +18,3 @@ class Algebra:
                 temp.append(0)
             res.append(temp)
         return res
-
-print(Algebra.zero(2,3))

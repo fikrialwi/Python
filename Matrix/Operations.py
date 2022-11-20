@@ -1,6 +1,9 @@
 import Algebra
+import Matrix
 class Operation(Algebra):
     def add(self, A, B):
+        A = Matrix(A)
+        B = Matrix(B)
         rowA, columnA = A.size()
         rowB, columnB = B.size()
 
@@ -13,6 +16,8 @@ class Operation(Algebra):
         else:
             return "ukuran matriks yang anda masukkan tidak sama sehingga tidak dapat dilakukan operasi penjumlahan"
     def subtrac(self, A, B):
+        A = Matrix(A)
+        B = Matrix(B)
         rowA, columnA = A.size()
         rowB, columnB = B.size()
 
@@ -25,6 +30,8 @@ class Operation(Algebra):
         else:
             return "ukuran matriks yang anda masukkan tidak sama sehingga tidak dapat dilakukan operasi pengurangan"
     def multiple(self, A, B):
+        A = Matrix(A)
+        B = Matrix(B)
         row = B.row()
         column = A.column()
 
@@ -40,6 +47,8 @@ class Operation(Algebra):
         return result
     
     def transpose(self, A):
+        A = Matrix(A)
+        
         row = A.row()
         column = A.column()
 
@@ -50,4 +59,10 @@ class Operation(Algebra):
                 result[j][i] == A[i][j]
         return result
 
-    
+    def copy(self,A):
+        A = Matrix(A)
+        res = self.zero(A.row(), A.column())
+        for i in range(A.row()):
+            for j in range(A.column()):
+                res[i][j] = A[i][j]
+        return res
