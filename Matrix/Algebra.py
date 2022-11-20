@@ -1,7 +1,7 @@
 class Algebra:
     def __init__(self) -> None:
         pass
-    def indentity(m):
+    def identity(m):
         res = []
         for i in range(m):
             temp = []
