@@ -184,9 +184,3 @@ class Graph(Algebra):
             return [*map(lambda y: [*map(self.degree, y)], self.notEdges())]
         else:
             return None
-
-
-I = Graph('Z_25','annihilator')
-print(I.matrixLaplacian())
-print(I.vertecies())
-print(I.edges())

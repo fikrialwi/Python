@@ -1,7 +1,7 @@
 from TopologiIndex import TopologiIndex
 from Graph import Graph
-import networkx as nx
-import matplotlib.pyplot as m
+# import networkx as nx
+# import matplotlib.pyplot as m
 
 
 class Run:
@@ -34,21 +34,21 @@ class Run:
             txt += f'\nTopologi Index: \n{ti}'
         doc.write(txt)
     
-        h = nx.Graph()
-        h.add_nodes_from(G.vertecies())
-        h.add_edges_from(list(map(lambda x: tuple(x), G.edges())))
-        options = {
-            "font_size": 12,
-            "node_size": 300,
-            "node_color": "white",
-            "edgecolors": "black",
-            "linewidths": 2,
-            "width": 5,
-        }
-        m.title(f'graf {graf}({ring})')
-        nx.draw_shell(h,**{'with_labels' : True})
-        m.show()
+        # h = nx.Graph()
+        # h.add_nodes_from(G.vertecies())
+        # h.add_edges_from(list(map(lambda x: tuple(x), G.edges())))
+        # options = {
+        #     "font_size": 12,
+        #     "node_size": 300,
+        #     "node_color": "white",
+        #     "edgecolors": "black",
+        #     "linewidths": 2,
+        #     "width": 5,
+        # }
+        # m.title(f'graf {graf}({ring})')
+        # nx.draw_shell(h,**{'with_labels' : True})
+        # m.show()
 
-prime = [3,5,7,11,13,17]
-for i in list(map(lambda x: x*x,prime)):
-    Run().run(f'Z_{i}','nilpotent','')
+prime = [5,7,11,13,17]
+for i in list(map(lambda x: 5*x,prime)):
+    Run().run(f'Z_{i}','unit','')
